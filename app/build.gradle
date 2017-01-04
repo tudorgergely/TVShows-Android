@@ -1,5 +1,18 @@
+buildscript {
+    ext.kotlin_version = '1.0.6'
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 23
@@ -7,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.tgergely.tvshows"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -21,6 +34,12 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -37,9 +56,14 @@ dependencies {
     compile 'com.github.brianegan.bansa:bansaKotlin:1.0.0-beta'
     compile 'com.android.support:support-v4:23.4.0'
     compile group: 'io.reactivex', name: 'rxjava', version: '1.2.1'
-}
-repositories {
-    mavenCentral()
-    maven { url "https://jitpack.io" }
+
+    compile 'org.jetbrains.anko:anko-sdk23:0.9.1' // sdk19, sdk21, sdk23 are also available
+    compile 'org.jetbrains.anko:anko-support-v4:0.9.1' // In case you need support-v4 bindings
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.9.1'
+
+    compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+    compile 'com.orhanobut:hawk:2.0.1'
+
 }
 //apply plugin: 'com.google.gms.google-services'

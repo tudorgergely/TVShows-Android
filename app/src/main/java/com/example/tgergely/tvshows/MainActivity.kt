@@ -1,7 +1,7 @@
 package com.example.tgergely.tvshows
 
+import android.app.Fragment
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.AdapterView
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.tgergely.tvshows.containers.Contact
 import com.example.tgergely.tvshows.containers.Home
+import com.orhanobut.hawk.Hawk
 import java.util.*
 
 class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Contact.OnFragmentInteractionListener {
@@ -21,8 +22,9 @@ class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Co
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setContentView(R.layout.activity_main)
+        Hawk.init(this).build()
 
-        val fm = supportFragmentManager
+        val fm = fragmentManager
         val ft = fm.beginTransaction()
 
         val fragOne = Home()
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Co
     }
 
     private fun selectItem(position: Int) {
-        supportFragmentManager.beginTransaction().replace(R.id.content_frame, mDrawerFragments[position]).commit()
+        fragmentManager.beginTransaction().replace(R.id.content_frame, mDrawerFragments[position]).commit()
         mDrawerList!!.setItemChecked(position, true)
         title = mDrawerTitles!![position]
         mDrawerLayout!!.closeDrawer(mDrawerList)
