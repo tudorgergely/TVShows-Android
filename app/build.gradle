@@ -49,9 +49,14 @@ dependencies {
 
     debugCompile 'com.github.brianegan.bansa:bansaDevTools:1.0.0-beta'
     debugCompile 'com.github.brianegan.bansa:bansaDevToolsUi:1.0.0-beta'
+
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-auth:10.0.1'
+    compile 'com.google.firebase:firebase-database:10.0.1'
+
+
     compile 'com.google.android.gms:play-services-auth:10.0.1'
+
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.github.brianegan.bansa:bansa:1.0.0-beta'
     compile 'com.github.brianegan.bansa:bansaKotlin:1.0.0-beta'

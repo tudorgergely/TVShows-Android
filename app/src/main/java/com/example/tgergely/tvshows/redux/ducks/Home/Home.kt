@@ -5,6 +5,7 @@ import com.brianegan.bansa.BaseStore
 import com.brianegan.bansa.Reducer
 import com.example.tgergely.tvshows.models.TvShow
 import com.example.tgergely.tvshows.redux.ApplicationState
+import com.example.tgergely.tvshows.redux.middleware.firebaseStorage
 import com.example.tgergely.tvshows.redux.middleware.itemsLoad
 import com.example.tgergely.tvshows.redux.middleware.search
 import com.example.tgergely.tvshows.redux.middleware.storage
@@ -24,4 +25,4 @@ private val reducer = Reducer<ApplicationState> { state, action ->
     }
 }
 
-val homeStore = BaseStore(ApplicationState(), reducer, itemsLoad, storage, search)
+val homeStore = BaseStore(ApplicationState(), reducer, itemsLoad, storage, search, firebaseStorage)

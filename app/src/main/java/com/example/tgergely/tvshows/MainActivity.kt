@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Co
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setContentView(R.layout.activity_main)
+
         Hawk.init(applicationContext).build()
+
         val mBuilder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.notification_template_icon_bg)
                 .setContentTitle("My notification")
