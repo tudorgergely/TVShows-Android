@@ -82,8 +82,12 @@ class Login : Fragment() {
         if (result.isSuccess) {
             val acct = result.signInAccount
             context.toast(acct!!.displayName.toString())
+            fragmentManager.executePendingTransactions()
+            val ft = fragmentManager.beginTransaction()
+            ft.replace(R.id.content_frame, Home())
+            ft.commit()
         } else {
-            context.toast("asdfasd")
+            context.toast("Login unsuccessful")
         }
     }
 

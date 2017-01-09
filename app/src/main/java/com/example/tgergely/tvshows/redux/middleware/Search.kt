@@ -12,6 +12,7 @@ import com.github.kittinunf.fuel.android.extension.responseJson
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.orhanobut.hawk.Hawk
+import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
 
@@ -28,15 +29,20 @@ val search = Middleware<ApplicationState> { store, action, next ->
                     is Result.Failure -> {
                     }
                     is Result.Success -> {
-                        val results = result.get().obj().getJSONArray("Search")
-                        val resultsArray = ArrayList<JSONObject>()
+                        try {
 
-                        for (i in 0..(results.length() - 1)) {
-                            resultsArray.add(results.getJSONObject(i))
+                            val results = result.get().obj().getJSONArray("Search")
+                            val resultsArray = ArrayList<JSONObject>()
+
+                            for (i in 0..(results.length() - 1)) {
+                                resultsArray.add(results.getJSONObject(i))
+                            }
+
+                            val tvShows = resultsArray.map(::responseToTvShow)
+                            next(ITEMS_LOAD_COMPLETE(tvShows))
+                        } catch (e : JSONException) {
+                            next(ITEMS_LOAD_COMPLETE(emptyList()))
                         }
-
-                        val tvShows = resultsArray.map(::responseToTvShow)
-                        next(ITEMS_LOAD_COMPLETE(tvShows))
                     }
                 }
             }

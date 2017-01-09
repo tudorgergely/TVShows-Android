@@ -26,7 +26,7 @@ val itemsLoad = Middleware<ApplicationState> { store, action, next ->
                     TvShow("House12", emptyList(), "http://lorempixel.com/500/500/"),
                     TvShow("House13", emptyList(), "http://lorempixel.com/500/500/")
             )
-            val favorites = Hawk.get<List<TvShow>>(FAVORITES_KEY)
+            val favorites = Hawk.get<List<TvShow>>(FAVORITES_KEY) ?: emptyList()
             val itemWithFav = items.map { i -> TvShow(i.name, i.genres, i.photoUrl, i.name in favorites.map(TvShow::name)) }
             next(ITEMS_LOAD_COMPLETE(itemWithFav))
         }

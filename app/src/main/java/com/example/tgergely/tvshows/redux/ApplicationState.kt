@@ -4,5 +4,6 @@ import com.example.tgergely.tvshows.models.TvShow
 
 data class ApplicationState(
         val items: List<TvShow> = emptyList(),
-        val contactMessage: String = ""
+        val contactMessage: String = "",
+        val email: String? = null
 )
