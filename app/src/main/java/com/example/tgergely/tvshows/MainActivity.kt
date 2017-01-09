@@ -1,8 +1,11 @@
 package com.example.tgergely.tvshows
 
 import android.app.Fragment
-import android.app.Notification
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.TaskStackBuilder
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.AdapterView
@@ -10,20 +13,13 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.tgergely.tvshows.containers.Contact
 import com.example.tgergely.tvshows.containers.Home
+import com.example.tgergely.tvshows.containers.Login
 import com.orhanobut.hawk.Hawk
-import org.jetbrains.anko.doAsync
-import java.util.*
-import android.content.Context.NOTIFICATION_SERVICE
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.TaskStackBuilder
 import org.jetbrains.anko.notificationManager
+import java.util.*
 
 
-class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Contact.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Contact.OnFragmentInteractionListener, Login.OnFragmentInteractionListener {
 
     private var mDrawerFragments: List<Fragment> = Arrays.asList(Home(), Contact())
     private var mDrawerTitles: List<String>? = Arrays.asList("Home", "Contact")
@@ -53,7 +49,7 @@ class MainActivity : AppCompatActivity(), Home.OnFragmentInteractionListener, Co
         val fm = fragmentManager
         val ft = fm.beginTransaction()
 
-        val fragOne = Home()
+        val fragOne = Login()
         ft.add(R.id.content_frame, fragOne)
         ft.commit()
 
